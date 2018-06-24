@@ -12,7 +12,7 @@ public class question1 {
 		System.out.println("Enter the value for N");
 		Scanner scan1 =  new Scanner(System.in);
 		n = scan1.nextInt();
-    System.out.println("Enter the value for M");
+  		System.out.println("Enter the value for M");
 		Scanner scan2 = new Scanner(System.in);
 		m = scan2.nextInt();
 		System.out.println("Enter the value for J and I ");
