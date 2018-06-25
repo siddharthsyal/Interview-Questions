@@ -1,4 +1,4 @@
-// Given a string, write a function to check if it is permution of a palindrome or not.
+// Given a string, write a function to check if it is permutation of a palindrome or not.
 
 import java.util.Scanner;
 
