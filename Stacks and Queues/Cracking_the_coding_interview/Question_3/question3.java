@@ -132,7 +132,8 @@ public class question3
 		else if(user_input == 4)
 		{
 			System.out.println("Enter the stack number to pop the data");
-			Scanner scan3 = new Scanner(System.in);			popstack(scan3.nextInt());
+			Scanner scan3 = new Scanner(System.in);			
+			popstack(scan3.nextInt());
 		}
 		System.out.println("Do you want to continue?(y==1)");
 		Scanner scan3 = new Scanner(System.in);
