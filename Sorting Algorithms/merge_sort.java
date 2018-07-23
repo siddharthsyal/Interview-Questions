@@ -1,72 +1,63 @@
 //Merge Sort
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class merge_sort {
 
-	private int length;
-	int[] b =  new int[length];	
-	private void sort(int a[], int p, int r) // Recursively breaking the elements of the array
+	private void sort(int[] a)
 	{
-		if(p<r) // Only breaking  if there are at least two numbers in the array.
-		{
-			int q = (p+r)/2;
-			sort(a,p,q);
-			sort(a,q+1,r);
-			merge(a,p,q,r);			
-		}
-		return;
+		int length = a.length;
+		if(length < 2)
+			return;
+		int mid = length/2;
+		int[] left = new int[mid];
+		int[] right = new int[length-mid];
+		for(int i=0;i<mid;i++)
+			left[i]=a[i];
+		for(int i=mid;i<length;i++)
+			right[i-mid]=a[i];
+		sort(left);
+		sort(right);
+		merge(left, right, a);
 	}
-	private void merge(int a[], int p, int q, int r) // sorting and merging into a new array.
+	private void merge(int[]left,int[] right, int[] a)
 	{
-		
-		int i=p,j=0,k=0;
-		j=q+1;
-		while(i<=q && j<=r)
+		int left_len = left.length;
+		int right_len = right.length;
+		int i =0,j=0,k=0;
+		while(i<left_len && j<right_len)
 		{
-			if(a[i]<a[j])
-			{
-				this.b[k++] = a[i++];
-			}
-			else 
-			{
-				this.b[k++]= a[j++];
-			}
+			if(left[i]<right[j])
+				a[k++] = left[i++];
+			else
+				a[k++] = right [j++];
 		}
-		while(i<=q)
-		{
-			this.b[k++] = a[i++];
-		}
-		while(j<=r)
-		{
-			this.b[k++] = a[j++];
-		}
-		return;
+		while(i<left_len)
+			a[k++]= left[i++];
+		while(j<right_len)
+			a[k++]= right[j++];
 	}
 	
 	private void user_interface()
 	{
-		System.out.println("Enter the number of elements");
-		Scanner scan1 =  new Scanner(System.in);
-		this.length = scan1.nextInt();
-		this.b = new int[length];
-		int[] a =  new int[this.length];
-		System.out.println("Enter the elements");
+		System.out.println("Enter the length of the array");
+		Scanner scan1 = new Scanner(System.in);
+		int length = scan1.nextInt();
+		int[] array = new int[length];
+		System.out.println("Enter the elements for the array");
 		for(int i=0;i<length;i++)
 		{
 			Scanner scan2 = new Scanner(System.in);
-			a[i]=  scan2.nextInt();
+			array[i]= scan2.nextInt();
 		}
-		this.sort(a, 0, this.length-1);
+		sort(array);
+		System.out.println("Sorted array is");
 		for(int i=0;i<length;i++)
-		{
-			System.out.print(b[i] +" ");
-		}
-		return;
+			System.out.print(array[i]+" ");
 	}
-	public static void main(String args[])
-	{
-		merge_sort m =  new merge_sort();
+	public static void main(String[] args) {
+		merge_sort m = new merge_sort();
 		m.user_interface();
 	}
 }
