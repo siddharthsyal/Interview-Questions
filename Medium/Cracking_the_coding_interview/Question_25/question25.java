@@ -2,14 +2,15 @@
 
 import java.util.Scanner;
 import java.util.HashMap;
-public class question25 extends doublyLinkedList{
+public class question25 {
 
+	doublyLinkedList cache = new doublyLinkedList();
 	public int current=1, size=0;
 	HashMap<Integer, doublynodes> map = new HashMap<Integer, doublynodes>();
 	public void print()
 	{
 		doublynodes nodes = new doublynodes();
-		nodes =  this.head;
+		nodes =  this.cache.head;
 		while(nodes.forward!=null)
 		{
 			System.out.print(nodes.data+" ");
@@ -27,7 +28,7 @@ public class question25 extends doublyLinkedList{
 			System.out.println("List is already empty");
 			return;
 		}
-		node =  this.head;
+		node =  this.cache.head;
 		while(node.forward!=null)
 		{
 			node =  node.forward;
@@ -46,7 +47,7 @@ public class question25 extends doublyLinkedList{
 		int data = scan1.nextInt();
 		if(this.map.containsKey(data))
 		{
-			this.delete(this.map.get(data));
+			this.cache.delete(this.map.get(data));
 			this.map.remove(data);
 			if(--this.current<=0)
 				this.current=0;
@@ -65,15 +66,15 @@ public class question25 extends doublyLinkedList{
 		if(map.containsKey(data))
 		{
 			System.out.println("Already there");
-			this.delete(this.map.get(data));
+			this.cache.delete(this.map.get(data));
 			this.map.remove(data);
-			this.map.put(data,this.insert(data));				
+			this.map.put(data,this.cache.insert(data));				
 		}
 		else
 		{
 			if(this.current<=this.size)
 			{
-				this.map.put(data,this.insert(data));
+				this.map.put(data,this.cache.insert(data));
 				this.current++;
 			}
 			else
@@ -94,6 +95,7 @@ public class question25 extends doublyLinkedList{
 	{
 		int x=1;
 		this.size=5;
+		cache = new doublyLinkedList();
 		while(x==1)
 		{
 			System.out.println("Select from options\n1)Insert\n2)Delete\n3)Print\nChoice: ");
